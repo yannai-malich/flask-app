@@ -17,7 +17,6 @@ pipeline {
                 echo "deploying the application"
                 sh "sudo nohup python3 app.py > log.txt 2>&1 &"
             }
-        }
             post {
                 always {
                     echo 'The pipeline completed'
@@ -31,5 +30,6 @@ pipeline {
                     error('Stopping early…')
                 }
             }
+        }
     }
 }
