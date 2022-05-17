@@ -33,8 +33,9 @@ pipeline {
                 }
             }
         }
-    }
-    node {
+    } 
+}
+node {
     stages {
         stage('Build Docker') {
             steps {
@@ -42,5 +43,4 @@ pipeline {
             }
         }
     }   
-    }
 }
