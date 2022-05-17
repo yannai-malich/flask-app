@@ -18,18 +18,18 @@ pipeline {
                 sh "sudo nohup python3 app.py > log.txt 2>&1 &"
             }
         }
-        post {
-            always {
-                echo 'The pipeline completed'
-                junit allowEmptyResults: true, testResults:'**/test_reports/*.xml'
+            post {
+                always {
+                    echo 'The pipeline completed'
+                    junit allowEmptyResults: true, testResults:'**/test_reports/*.xml'
+                }
+                success {                   
+                    echo "Flask Application Up and running!!"
+                }
+                failure {
+                    echo 'Build stage failed'
+                    error('Stopping early…')
+                }
             }
-            success {                   
-                echo "Flask Application Up and running!!"
-            }
-            failure {
-                echo 'Build stage failed'
-                error('Stopping early…')
-            }
-        }
     }
 }
