@@ -13,6 +13,9 @@ pipeline {
                 input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
             }
         }
+        stage('Build Docker') {
+            sh "sudo docker build -t flask-app ."
+        }
         stage('Deploy') {
             steps {
                 echo "deploying the application"
