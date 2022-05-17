@@ -6,6 +6,11 @@ pipeline {
                 sh 'pip install -r requirements.txt'
             }
         }
+        stage('run') {
+            steps {
+                sh 'python3 app.py'
+            }
+        }
         stage('test') {
             steps {
                 sh 'python test.py'
