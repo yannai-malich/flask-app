@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip install flask'
+                sh 'pip install --no-cache-dir -r requirements.txt'
             }
         }
         stage('test') {
