@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "deploying the application"
-                sh "sudo nohup python3 app.py > log.txt 2>&1 &"
+                /*sh "sudo nohup python3 app.py > log.txt 2>&1 &"*/
             }
             post {
                 always {
@@ -33,14 +33,17 @@ pipeline {
                 }
             }
         }
-    } 
-}
-node {
+    }
+    agent { dockerfile true }
     stages {
-        stage('Build Docker') {
-            steps {
-                sh "sudo docker build -t flask-app ."
-            }
+        stage('Test') {
+        steps {
+            sh '''
+            node --version
+            git --version
+            curl --version
+            '''
         }
-    }   
+        }
+    }
 }
